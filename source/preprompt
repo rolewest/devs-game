@@ -13,23 +13,26 @@ repeat_str(){
 look(){
  xrs=`echo '' | tree -L 1 | tail -1`;
 IFS=', ' read -ra ADDR <<< "$xrs";
-echo
- printf "🔎 You look around  ${DG_ANSI_LGRE}\""${PWD##*/}"\"${DG_ANSI_X_COL}  and see ${DG_ANSI_LBLU}${ADDR[2]} ${ADDR[3]}${DG_ANSI_X_COL} "and" ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL}\n" | pv -qL 60;
 
+ printf "🔎 You look around  ${DG_ANSI_LGRE}\""${PWD##*/}"\"${DG_ANSI_X_COL}  and see ${DG_ANSI_LBLU}${ADDR[2]} ${ADDR[3]}${DG_ANSI_X_COL} "and" ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL}\n\n" | pv -qL 60;
  # sleep 0.4;
-
 }
 
 function before_command() {
+
+oldxp="${DG_USER_XP}"
+oldlvl=$DG_USER_LEVEL
+
 load_user_data # load it so we can save most recent
+
 
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
-
-        if [ $2 = 0 ]; then
+        if [[ $2 = 0 && $user_updated = 1 ]]; then
           dg_current_stats
         fi
           ;;
+
         "pwd"*)
          x=`earned_xp 0.01`
          yop=`check_valid $2 $x`;
@@ -38,8 +41,18 @@ load_user_data # load it so we can save most recent
           look
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
-
           ;;
+
+        "cd "*)
+        x=`earned_xp 0.01`
+        yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🎈 + $x XP!\n"
+
+          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+          ;;
+
         "ls "*)
         x=`earned_xp 0.01`
         yop=`check_valid $2 $x`;
@@ -49,6 +62,7 @@ load_user_data # load it so we can save most recent
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
           ;;
+
         "git "*"push"*)
         x=`earned_xp 10`
         yop=`check_valid $2 $x`;
@@ -56,14 +70,14 @@ load_user_data # load it so we can save most recent
           printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🚀 + $x XP!\n";
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
-
           ;;
+
         "git "*)
         x=`earned_xp 0.1`
          yop=`check_valid $2 $x`;
         if [[ $yop == 'good' ]]; then
           printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🎁 + $x XP!\n";
-	  export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+	        export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
           ;;
 
@@ -71,9 +85,16 @@ load_user_data # load it so we can save most recent
        # echo "$BASH_COMMAND";
        ;;
   esac
+ # this makes it so the current_stats are only shown if a status change happend
+  if [[ $oldxp = $DG_USER_XP && $oldlvl = $DG_USER_LEVEL ]]; then
+    user_updated=0
+  else
+    user_updated=1
+  fi
 
   save_user_data # save it!
   level_check
+
 }
 
 trap 'before_command ${LINENO} ${?}' DEBUG
@@ -83,12 +104,7 @@ function after_command() {
         $PROMPT_COMMAND)
          echo '';
           ;;
-        pwd)
-         echo 'HUH?';
-          ;;
-        "ls"*)
-         echo 'YEAH';
-          ;;
+
        *)
        # echo "$BASH_COMMAND";
        ;;
@@ -104,6 +120,7 @@ function check_valid() {
 }
 
 function dg_current_stats() {
+  printf "\n"
   n=$((100*DG_USER_LEVEL))
   nmo=$((100*(DG_USER_LEVEL-1)))
   xp_next=$(($n+$nmo))
