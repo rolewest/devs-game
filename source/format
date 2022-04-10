@@ -56,6 +56,9 @@ DG_ANSI_BG_LMAG='\033[0;105m'
 DG_ANSI_BG_LCYA='\033[0;106m'
 DG_ANSI_BG_WHI='\033[0;107m'
 
+# TODO: convert all icons to unicode https://unicode.org/emoji/charts/full-emoji-list.html
+
+
 # icons
 DG_ICON_MPIN='📍'
 DG_ICON_SPARK='✨'
@@ -103,7 +106,7 @@ DG_ICON_TOOLS='🛠️'
 DG_ICON_GEAR='⚙️'
 DG_ICON_ANCHOR='⚓'
 DG_ICON_ABACUS='🧮'
-DG_ICON_FIRE='🔥'
+DG_ICON_FIRE='\U1F525' # 🔥
 
 DG_ICON_RAISE='🙌'
 DG_ICON_CLAP='👏'

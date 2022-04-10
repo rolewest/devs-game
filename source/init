@@ -1,12 +1,16 @@
 devgame_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 load_user_data() {
-ARRAY=()
-  while IFS= read -r line; do
-    ARRAY+=("$line")
-  done < $devgame_dir/user_data
-export DG_USER_LEVEL=${ARRAY[0]}
-export DG_USER_XP=${ARRAY[1]}
-export DG_USER_PAUSE=${ARRAY[2]}
+  if [[ $DG_USER_LEVEL == '' ]]; then
+  # welcome message for first run
+    echo `dg_welcome`
+  fi
+  ARRAY=()
+    while IFS= read -r line; do
+      ARRAY+=("$line")
+    done < $devgame_dir/user_data
+  export DG_USER_LEVEL=${ARRAY[0]}
+  export DG_USER_XP=${ARRAY[1]}
+  export DG_USER_PAUSE=${ARRAY[2]}
 }
 load_user_data
 export DG_USER_XP=${DG_USER_XP:-0.00}
@@ -28,12 +32,14 @@ load_user_data # load it so we can save most recent
     echo 'pausing...';
   fi
   echo $DG_USER_PAUSE
-save_user_data # load it so we can save most recent  
+save_user_data # load it so we can save most recent
 bash --login
 }
 
 
 if [[ $DG_USER_PAUSE != "paused" ]]; then
+
+
 
   source $devgame_dir/format
   source $devgame_dir/preprompt
@@ -48,10 +54,10 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
 
 
 
-  scroll () { 
-    if [[ $@ ]] 
+  scroll () {
+    if [[ $@ ]]
     then
-      less -FX ~/Desktop/Work/Terminal-Game/scrolls/"$@"; 
+      less -FX ~/Desktop/Work/Terminal-Game/scrolls/"$@";
     else
       🔎📜;
     fi
@@ -75,12 +81,12 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     repeat_str 64 "-";
   }
   alias 👀='get_git_status'
-  🔎📜() { 
+  🔎📜() {
     printf "\n";
     cat ~/Desktop/Work/Terminal-Game/ascii/scrolls;
     repeat_str 64 "#";
     printf "found $(ls -p ~/Desktop/Work/Terminal-Game/scrolls/$@ | grep -v / | grep -v 'guide' | wc -l) scrolls:\n\n";
-    ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "guide"; 
+    ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "guide";
     printf "\n";
     repeat_str 64 "#";
   }
@@ -91,3 +97,13 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
 fi
 
 
+function dg_welcome() {
+  printf "\n${DG_ANSI_INVERT}"
+    repeat_str 64 "#"
+    printf "${DG_ANSI_X_INVERT}\n"
+    printf "${DG_ANSI_BG_GRE}Welcome to Devs Game v 0.01!${DG_ANSI_X_BG}"
+    printf "${DG_ANSI_BG_BLU} `dg_show_url 'http://testing.com' 'Getting Started'` dsfsfd${DG_ANSI_X_COL}"
+    printf "\n${DG_ANSI_INVERT}"
+    repeat_str 64 "#"
+    printf "${DG_ANSI_X_INVERT}\n"
+}

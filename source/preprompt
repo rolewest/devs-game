@@ -18,6 +18,8 @@ IFS=', ' read -ra ADDR <<< "$xrs";
  # sleep 0.4;
 }
 
+
+
 function before_command() {
 
 oldxp="${DG_USER_XP}"
@@ -164,4 +166,8 @@ function dg_word_choice() {
   IFS='|' read -r -a array <<< "$1"
   r=$(( RANDOM % $((${#array[@]})) ))
   printf ${array[$r]}
+}
+
+function dg_show_url() {
+printf "\e]8;;$1\a$2\e]8;;\a"
 }
