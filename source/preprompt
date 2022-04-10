@@ -2,35 +2,32 @@
 # load the main prompt stylings
 repeat_str(){
   x=""
-  for i in $(seq 1 $1); 
+  for i in $(seq 1 $1);
   do
-   #$x+=$2; 
+   #$x+=$2;
    x+="$2"
   done
   printf "$x";
 }
 
-
 look(){
  xrs=`echo '' | tree -L 1 | tail -1`;
 IFS=', ' read -ra ADDR <<< "$xrs";
-echo 
+echo
  printf "🔎 You look around  ${DG_ANSI_LGRE}\""${PWD##*/}"\"${DG_ANSI_X_COL}  and see ${DG_ANSI_LBLU}${ADDR[2]} ${ADDR[3]}${DG_ANSI_X_COL} "and" ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL}\n" | pv -qL 60;
 
  # sleep 0.4;
 
 }
 
-
-
-function before_command() { 
+function before_command() {
 load_user_data # load it so we can save most recent
 
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
 
         if [ $2 = 0 ]; then
-          dg_current_level
+          dg_current_stats
         fi
           ;;
         "pwd"*)
@@ -41,7 +38,7 @@ load_user_data # load it so we can save most recent
           look
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
-        
+
           ;;
         "ls "*)
         x=`earned_xp 0.01`
@@ -59,7 +56,7 @@ load_user_data # load it so we can save most recent
           printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🚀 + $x XP!\n";
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
-       
+
           ;;
         "git "*)
         x=`earned_xp 0.1`
@@ -74,12 +71,12 @@ load_user_data # load it so we can save most recent
        # echo "$BASH_COMMAND";
        ;;
   esac
-  
+
   save_user_data # save it!
   level_check
 }
 
-trap 'before_command ${LINENO} ${?}' DEBUG 
+trap 'before_command ${LINENO} ${?}' DEBUG
 
 function after_command() {
   case "$1" in
@@ -106,7 +103,7 @@ function check_valid() {
   fi
 }
 
-function dg_current_level() {
+function dg_current_stats() {
   n=$((100*DG_USER_LEVEL))
   nmo=$((100*(DG_USER_LEVEL-1)))
   xp_next=$(($n+$nmo))
@@ -142,5 +139,3 @@ function earned_xp() {
     printf $x
 
 }
-
-
