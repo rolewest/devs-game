@@ -1,0 +1,93 @@
+devgame_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+load_user_data() {
+ARRAY=()
+  while IFS= read -r line; do
+    ARRAY+=("$line")
+  done < $devgame_dir/user_data
+export DG_USER_LEVEL=${ARRAY[0]}
+export DG_USER_XP=${ARRAY[1]}
+export DG_USER_PAUSE=${ARRAY[2]}
+}
+load_user_data
+export DG_USER_XP=${DG_USER_XP:-0.00}
+export DG_USER_LEVEL=${DG_USER_LEVEL:-1}
+export DG_USER_PAUSE=${DG_USER_PAUSE}
+
+save_user_data() {
+ printf "${DG_USER_LEVEL:-1}\n${DG_USER_XP:-0.00}\n${DG_USER_PAUSE}\n" > $devgame_dir/user_data
+}
+
+
+dg_pause_game() {
+load_user_data # load it so we can save most recent
+  if [[ $DG_USER_PAUSE = "paused" ]]; then
+    export DG_USER_PAUSE=''
+    echo 'unpausing...';
+  else
+    export DG_USER_PAUSE='paused'
+    echo 'pausing...';
+  fi
+  echo $DG_USER_PAUSE
+save_user_data # load it so we can save most recent  
+bash --login
+}
+
+
+if [[ $DG_USER_PAUSE != "paused" ]]; then
+
+  source $devgame_dir/format
+  source $devgame_dir/preprompt
+
+  dg_pwd() {
+    echo "You're in ${PWD##*/}" | pv -qL 20; sleep 0.4;
+  }
+  source $devgame_dir/prompt
+
+
+
+
+
+
+  scroll () { 
+    if [[ $@ ]] 
+    then
+      less -FX ~/Desktop/Work/Terminal-Game/scrolls/"$@"; 
+    else
+      🔎📜;
+    fi
+  }
+  alias LL='look'
+  alias TT='gnomon'
+  alias LG='git log --graph --oneline --decorate'
+  alias timeit='TT'
+  alias log='LG'
+  alias GB='guide'
+  alias 📓='guide'
+  alias 🔎='look'
+  alias ⏱='timeit'
+  alias 🔖='log'
+  alias 📜='scroll'
+  alias guide='📜 guide'
+  alias 🌱='git branch'
+  get_git_status(){
+    repeat_str 64 "-";
+    git status;
+    repeat_str 64 "-";
+  }
+  alias 👀='get_git_status'
+  🔎📜() { 
+    printf "\n";
+    cat ~/Desktop/Work/Terminal-Game/ascii/scrolls;
+    repeat_str 64 "#";
+    printf "found $(ls -p ~/Desktop/Work/Terminal-Game/scrolls/$@ | grep -v / | grep -v 'guide' | wc -l) scrolls:\n\n";
+    ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "guide"; 
+    printf "\n";
+    repeat_str 64 "#";
+  }
+
+
+  after_command $BASH_COMMAND
+
+fi
+
+
