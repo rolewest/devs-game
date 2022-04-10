@@ -5,7 +5,7 @@
 ██║░░██║██╔══╝░░░╚████╔╝░░╚═══██╗  ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░
 ██████╔╝███████╗░░╚██╔╝░░██████╔╝  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
 ╚═════╝░╚══════╝░░░╚═╝░░░╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
-# devs-game
+# Devs Game
 Gamify your daily job tasks, get better with git, bash, VS code, and more!
 
 I started this to help me stay motivated, maybe it can do the same for you.
@@ -32,6 +32,11 @@ a|b|
 - refactor messy code
 - remove old alias'
 - add new skills:
-  -  VSCode features
-  -  Test features (Jest/Cypress/etc.)
-  -  More Git/Github
+  - VSCode features
+  - Test features (Jest/Cypress/etc.)
+  - More Git/Github
+  - Apt commands
+  - Grep/Regex/Pipe
+  - Basic file system
+- scroll find logic
+  - Scrolls should show after using a command (random+repeated)
