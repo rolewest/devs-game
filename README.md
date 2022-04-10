@@ -17,7 +17,8 @@ Gamify your daily job tasks, get better with git, bash, VS code, and more!
 
 ## Commands
 - pause/resume `dg_pause_game`
-- show stats 'dg_
+- show stats `dg_current_stats`
+- show guide `guide`
 
 ### Screen shots
 a|b|
