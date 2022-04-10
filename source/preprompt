@@ -1,0 +1,146 @@
+
+# load the main prompt stylings
+repeat_str(){
+  x=""
+  for i in $(seq 1 $1); 
+  do
+   #$x+=$2; 
+   x+="$2"
+  done
+  printf "$x";
+}
+
+
+look(){
+ xrs=`echo '' | tree -L 1 | tail -1`;
+IFS=', ' read -ra ADDR <<< "$xrs";
+echo 
+ printf "🔎 You look around  ${DG_ANSI_LGRE}\""${PWD##*/}"\"${DG_ANSI_X_COL}  and see ${DG_ANSI_LBLU}${ADDR[2]} ${ADDR[3]}${DG_ANSI_X_COL} "and" ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL}\n" | pv -qL 60;
+
+ # sleep 0.4;
+
+}
+
+
+
+function before_command() { 
+load_user_data # load it so we can save most recent
+
+  case "$BASH_COMMAND" in
+        $PROMPT_COMMAND)
+
+        if [ $2 = 0 ]; then
+          dg_current_level
+        fi
+          ;;
+        "pwd"*)
+         x=`earned_xp 0.01`
+         yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🎈 + $x XP!\n"
+          look
+          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+        
+          ;;
+        "ls "*)
+        x=`earned_xp 0.01`
+        yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🎈 + $x XP!\n"
+          look
+          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+          ;;
+        "git "*"push"*)
+        x=`earned_xp 10`
+        yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🚀 + $x XP!\n";
+          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+       
+          ;;
+        "git "*)
+        x=`earned_xp 0.1`
+         yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n🎁 + $x XP!\n";
+	  export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+          ;;
+
+       *)
+       # echo "$BASH_COMMAND";
+       ;;
+  esac
+  
+  save_user_data # save it!
+  level_check
+}
+
+trap 'before_command ${LINENO} ${?}' DEBUG 
+
+function after_command() {
+  case "$1" in
+        $PROMPT_COMMAND)
+         echo '';
+          ;;
+        pwd)
+         echo 'HUH?';
+          ;;
+        "ls"*)
+         echo 'YEAH';
+          ;;
+       *)
+       # echo "$BASH_COMMAND";
+       ;;
+  esac
+}
+
+function check_valid() {
+  if [ $1 == 0 ] && (( $(echo "$2 > 0.00" | bc -l) )); then
+    eval 'echo "good"'
+  else
+    eval 'echo "bad"'
+  fi
+}
+
+function dg_current_level() {
+  n=$((100*DG_USER_LEVEL))
+  nmo=$((100*(DG_USER_LEVEL-1)))
+  xp_next=$(($n+$nmo))
+  xp_needed=`echo $xp_next - $DG_USER_XP | bc -l | xargs printf "%.2f"`
+  printf "${DG_ANSI_BG_BLU}"
+  repeat_str 64 "#"
+  printf "${DG_ANSI_X_BG}\n"
+  printf "current level: ${DG_USER_LEVEL}\t\t\t";
+  printf "current xp: ${DG_USER_XP}/${xp_needed}\t";
+  printf "\n"
+  printf "${DG_ANSI_BG_BLU}"
+  repeat_str 64 "#"
+  printf "${DG_ANSI_X_BG}${DG_ANSI_X}"
+  printf "\n"
+}
+
+function level_check() {
+  load_user_data # load it so we can save most recent
+  n=$((100*DG_USER_LEVEL))
+  nmo=$((100*(DG_USER_LEVEL-1)))
+  xp_next=$(($n+$nmo))
+  xp_needed=`echo $xp_next - $DG_USER_XP | bc -l | xargs printf "%.2f"`
+  if (( $(echo "$xp_needed <= 0.00" | bc -l) )); then
+    export DG_USER_XP=0.00
+    export DG_USER_LEVEL=$((DG_USER_LEVEL+1))
+    save_user_data
+    source $devgame_dir/levelup $xp_next
+  fi
+}
+# level_check
+function earned_xp() {
+  x=`echo $1 / $DG_USER_LEVEL | bc -l | xargs printf "%.2f"`
+    printf $x
+
+}
+
+
