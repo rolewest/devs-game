@@ -10,6 +10,8 @@ Gamify your daily job tasks, get better with git, bash, VS code, and more!
 
 I started this to help me stay motivated, maybe it can do the same for you.
 
+This is mostly for learning bash terminal currently
+
 ## Install
 1. Clone the repo
 2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vi ~/.bashrc`)
@@ -40,3 +42,4 @@ a|b|
   - Basic file system
 - scroll find logic
   - Scrolls should show after using a command (random+repeated)
+- shortcut skills (turn on shortners like `..` instead of `cd)
