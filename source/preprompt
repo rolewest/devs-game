@@ -19,8 +19,14 @@ IFS=', ' read -ra ADDR <<< "$xrs";
 }
 
 
-
+mkdir -p $devgame_bdir/mazes
 function before_command() {
+if [[ $PWD == */mazes* ]]; then
+  dg_items=${devgame_bdir}/my_items/
+else
+  dg_items=''
+fi
+
 xrs=`echo '' | tree -L 1 | tail -1`;
 IFS=', ' read -ra ADDR <<< "$xrs";
 oldxp="${DG_USER_XP}"
@@ -28,11 +34,22 @@ oldlvl=$DG_USER_LEVEL
 
 load_user_data # load it so we can save most recent
 
+in_maze=0
+
 ## check if in maze
 if [[ $user_updated = 1 ]]; then
   case $PWD/ in
+    */mazes*)
+    # build the mazes
+    if [[ $devgamemaze_bdir == '' ]]; then
+    echo 'You need to enter your password to build the mazes'
+    fi
+    source $devgame_dir/mazes_source/beginner
+    ;;&
     */mazes/*)
+
       printf "\n${DG_ANSI_BOLD}You're in the mazes, type ${DG_ANSI_BG_MAG}dg_maze_info${DG_ANSI_X_BG}${DG_ANSI_BOLD} for help...${DG_ANSI_X}"
+      in_maze=1
       ;;&
     */mazes/beginner*)
       if [[ "${ADDR[0]}" = 0 ]]; then
@@ -44,6 +61,8 @@ if [[ $user_updated = 1 ]]; then
     #*) echo "not in the maze";;
   esac
 fi
+
+
 
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
@@ -71,6 +90,16 @@ fi
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
           ;;
+
+        "mv readme"*)
+
+
+          if [[ $PWD == */mazes* ]]; then
+            printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
+          fi
+          #exit
+         ;;
+
         "less "*)
         x=`earned_xp 0.05`
         yop=`check_valid $2 $x`;
@@ -133,7 +162,6 @@ function after_command() {
         $PROMPT_COMMAND)
          echo '';
           ;;
-
        *)
        # echo "$BASH_COMMAND";
        ;;
