@@ -1,0 +1,71 @@
+printf "${DG_ANSI_BG_MAG}"
+repeat_str 64 "#"
+printf "${DG_ANSI_X_BG}\n"
+printf "
+███╗░░░███╗░█████╗░███████╗███████╗░██████╗
+████╗░████║██╔══██╗╚════██║██╔════╝██╔════╝
+██╔████╔██║███████║░░███╔═╝█████╗░░╚█████╗░
+██║╚██╔╝██║██╔══██║██╔══╝░░██╔══╝░░░╚═══██╗
+██║░╚═╝░██║██║░░██║███████╗███████╗██████╔╝
+╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░
+ 🅱  🅰  🆂  🅸  🅲     🅲  🅾  🅼  🅼  🅰  🅽  🅳  🆂
+"
+printf "
+=====================================================================
+|👁️  Look around: ${DG_ANSI_INVERT}ls -1${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🔎 Find hidden: ${DG_ANSI_INVERT}ls -1a${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🧭 Change directory: ${DG_ANSI_INVERT}cd <folder_name>${DG_ANSI_X_INVERT} or go backwards with ${DG_ANSI_INVERT}cd ..${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🗒️ Read file: ${DG_ANSI_INVERT}less <file_name>${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🗒️ Read saved file: ${DG_ANSI_INVERT}less \$dg_items/<file_name>${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🤏 Save item: ${DG_ANSI_INVERT}mv <file_name> \$dg_items${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🎒 Show Saved items: ${DG_ANSI_INVERT}dg_show_items${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|📜 Read scroll: ${DG_ANSI_INVERT}dg_scroll <file_name>${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|📝 Edit/Create file: ${DG_ANSI_INVERT}nano <file_name>${DG_ANSI_X_INVERT} (beginners ${DG_ANSI_INVERT}gedit <file_name>${DG_ANSI_X_INVERT})
+|--------------------------------------------------------------------
+|🗑️  Delete file: ${DG_ANSI_INVERT}rm <file_name>${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|❌ Delete directory & files: ${DG_ANSI_INVERT}rm -r<folder_name>${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
+|🌪️  Transport me out of the maze: ${DG_ANSI_INVERT}dg_maze_quit${DG_ANSI_X_INVERT}
+=====================================================================
+"
+
+xrs=`echo '' | tree -L 1 | tail -1`;
+IFS=', ' read -ra ADDR <<< "$xrs";
+
+
+case $PWD/ in
+    */beginner/*)
+      printf "\n${DG_ANSI_BOLD}You are in the ${DG_ANSI_X_BOLD}${DG_ANSI_BG_MAG}beginner tutorial maze${DG_ANSI_X_BG}"
+      #printf "\nThere is ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL} in front of you and 1 behind you\n\n" | pv -qL 60;
+    ;;
+    */mazes/) echo "Please enter a maze to get started...";;
+
+    *) echo "You are in an unknown maze...";;
+  esac
+
+# show hints for all
+case $PWD/ in
+    */mazes/*)
+      printf "\nhint: "
+      if [[ "${ADDR[0]}" = 0 ]] && [[ "${ADDR[2]}" = 0 ]]; then
+        printf "Nothing to ${DG_ANSI_DIM}see${DG_ANSI_X} here.\n\n" | pv -qL 60;
+      elif [[ "${ADDR[0]}" = 0 ]] && [[ "${ADDR[2]}" > 0 ]]; then
+        printf "You're in a dead-end, try looking, or go back.\n\n" | pv -qL 60;
+      else
+        printf "Try looking around.\n\n" | pv -qL 60;
+      fi
+    ;;
+esac
+
+printf "\n${DG_ANSI_BG_MAG}"
+repeat_str 64 "#"
+printf "${DG_ANSI_X_BG}\n"

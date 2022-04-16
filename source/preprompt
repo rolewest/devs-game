@@ -21,12 +21,29 @@ IFS=', ' read -ra ADDR <<< "$xrs";
 
 
 function before_command() {
-
+xrs=`echo '' | tree -L 1 | tail -1`;
+IFS=', ' read -ra ADDR <<< "$xrs";
 oldxp="${DG_USER_XP}"
 oldlvl=$DG_USER_LEVEL
 
 load_user_data # load it so we can save most recent
 
+## check if in maze
+if [[ $user_updated = 1 ]]; then
+  case $PWD/ in
+    */mazes/*)
+      printf "\n${DG_ANSI_BOLD}You're in the mazes, type ${DG_ANSI_BG_MAG}dg_maze_info${DG_ANSI_X_BG}${DG_ANSI_BOLD} for help...${DG_ANSI_X}"
+      ;;&
+    */mazes/beginner*)
+      if [[ "${ADDR[0]}" = 0 ]]; then
+        printf "\nYou hit a dead-end, ${DG_ANSI_LBLU}1 directory${DG_ANSI_X_COL} back the way you came in.\n\n" | pv -qL 60;
+      else
+        printf "\nYou see ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL} in front of you and 1 behind you\n\n" | pv -qL 60;
+      fi
+    ;;
+    #*) echo "not in the maze";;
+  esac
+fi
 
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
@@ -54,7 +71,15 @@ load_user_data # load it so we can save most recent
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
         fi
           ;;
+        "less "*)
+        x=`earned_xp 0.05`
+        yop=`check_valid $2 $x`;
+        if [[ $yop == 'good' ]]; then
+          printf "You read a file with $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
 
+          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+        fi
+          ;;
         "ls "*)
         x=`earned_xp 0.01`
         yop=`check_valid $2 $x`;
@@ -76,7 +101,7 @@ load_user_data # load it so we can save most recent
           ;;
 
         "git "*)
-        x=`earned_xp 0.1`
+        x=`earned_xp 1`
          yop=`check_valid $2 $x`;
         if [[ $yop == 'good' ]]; then
           dg_icon=`dg_word_choice "$DG_ICON_FIRE|$DG_ICON_GSTAR|$DG_ICON_RAISE|$DG_ICON_CLAP"`
@@ -121,6 +146,36 @@ function check_valid() {
   else
     eval 'echo "bad"'
   fi
+}
+
+function dg_maze_info() {
+  printf "\n"
+  source $devgame_bdir/ascii/mazes
+  printf "\n"
+}
+
+function dg_maze_quit() {
+printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} Are you sure [y/n]? ${DG_ICON_WARNING}${DG_ANSI_X_BG}\n"
+read -rep $'You will be transported out of the mazes: ' choice
+
+case "$choice" in
+  y|Y )
+    cd $devgame_bdir/mazes
+    printf "${DG_ANSI_BG_BLU}${DG_ICON_TORNADO} You have been transported to the root of the mazes ${DG_ICON_TORNADO} ${DG_ANSI_X_BG}\n"
+
+  ;;
+  * )
+    echo "Good luck on your travels!"
+  ;;
+esac
+
+#   read -p "" -n 1 -r
+#   printr "\n"  # move to a new line
+# if [[ $REPLY =~ ^[Yy]$ ]]
+# then
+#     cd $devgame_bdir/mazes
+# fi
+
 }
 
 function dg_current_stats() {

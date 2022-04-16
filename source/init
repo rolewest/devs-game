@@ -1,4 +1,6 @@
 devgame_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+devgame_bdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
+dg_items=${devgame_bdir}/my_items
 load_user_data() {
   if [[ $DG_USER_LEVEL == '' ]]; then
   # welcome message for first run
@@ -67,13 +69,13 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
   alias LG='git log --graph --oneline --decorate'
   alias timeit='TT'
   alias log='LG'
-  alias GB='guide'
-  alias 📓='guide'
+  alias GB='dg_guide'
+  alias 📓='dg_guide'
   alias 🔎='look'
   alias ⏱='timeit'
   alias 🔖='log'
   alias 📜='scroll'
-  alias guide='📜 guide'
+  alias guide='📜 dg_guide'
   alias 🌱='git branch'
   get_git_status(){
     repeat_str 64 "-";
@@ -85,13 +87,21 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     printf "\n";
     cat ~/Desktop/Work/Terminal-Game/ascii/scrolls;
     repeat_str 64 "#";
-    printf "found $(ls -p ~/Desktop/Work/Terminal-Game/scrolls/$@ | grep -v / | grep -v 'guide' | wc -l) scrolls:\n\n";
-    ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "guide";
+    printf "found $(ls -p ~/Desktop/Work/Terminal-Game/scrolls/$@ | grep -v / | grep -v 'dg_guide' | wc -l) scrolls:\n\n";
+    ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "dg_guide";
     printf "\n";
     repeat_str 64 "#";
   }
 
+  dg_show_items() {
+    printf "\n";
 
+    repeat_str 64 "#";
+    printf "\nfound $(ls -p ~/Desktop/Work/Terminal-Game/my_items/$@ | grep -v / | grep -v 'dg_guide' | wc -l) items:\n\n";
+    ls -p ~/Desktop/Work/Terminal-Game/my_items/"$@" | grep -v / | grep -v "dg_guide";
+    printf "\n";
+    repeat_str 64 "#";
+  }
   after_command $BASH_COMMAND
 
 fi
