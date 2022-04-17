@@ -7,8 +7,8 @@ dg_welcome() {
   printf "\n${DG_ANSI_INVERT}"
     repeat_str 64 "#"
     printf "${DG_ANSI_X_INVERT}\n"
-    printf "${DG_ANSI_BG_GRE}Welcome to Devs Game v 0.01!${DG_ANSI_X_BG}"
-    printf "${DG_ANSI_BG_BLU} `dg_show_url 'file://'${devgame_bdir}/index.html 'Getting Started'` ${DG_ANSI_X_COL}"
+    printf "${DG_ANSI_BG_GRE}   Welcome to Devs Game v 0.01!${DG_ANSI_X_BG}"
+    printf "${DG_ANSI_BG_BLU} `dg_show_url 'file://'${devgame_bdir}/index.html 'Open This Link to Get Started! '` ${DG_ANSI_X_COL}"
     printf "\n${DG_ANSI_INVERT}"
     repeat_str 64 "#"
     printf "${DG_ANSI_X_INVERT}\n"
@@ -128,5 +128,6 @@ create_link_file() {
     printf "\nprintf '\nExternal links are not affiliated with Devs Game\n\n'\n" >> $2
     chmod u+x $2
     printf "\n\n${DG_ANSI_BG_GRE}${DG_ICON_GIFT} You found a new web link!${DG_ICON_GIFT}${DG_ANSI_X}\nTry ${DG_ANSI_BG_BLU}./${2}${DG_ANSI_X} to open it, or move it to your items!\n\n"
+    aplay /usr/share/sounds/sound-icons/cembalo-1.wav >/dev/null 2>&1 || true
   fi
 }

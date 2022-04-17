@@ -13,7 +13,7 @@ mkdir -p $devgame_bdir/mazes
 function before_command() {
 if [[ $PWD == */mazes* ]]; then
   dg_items=${devgame_bdir}/my_items/
-#else
+#else # this was to restrict dg_items to maze only
   #dg_items=''
 fi
 
@@ -32,6 +32,7 @@ if [[ $user_updated = 1 ]]; then
     */mazes*)
     # build the mazes
     if [[ $devgamemaze_bdir == '' ]]; then
+    aplay /usr/share/sounds/sound-icons/cembalo-6.wav >/dev/null 2>&1 || true
     echo 'You need to enter your password to build the mazes'
     fi
     source $devgame_dir/mazes_source/beginner.sh
@@ -76,11 +77,12 @@ fi
           printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
+          #(sleep 1 && create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001')& >/dev/null 2>&1 || true
+
         fi
           ;;
 
         "mv readme"*)
-
           if [[ $PWD == */mazes* ]]; then
             printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
           fi

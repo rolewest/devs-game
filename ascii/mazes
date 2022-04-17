@@ -1,26 +1,45 @@
+if [[ $DG_USER_LEVEL > 1 ]]; then
+  less_flags=" ${DG_ANSI_BG_MAG}-FX${DG_ANSI_X}${DG_ANSI_INVERT}"
+  ls_flags1=" ${DG_ANSI_BG_MAG}-1${DG_ANSI_X}${DG_ANSI_INVERT}"
+  ls_flags2="${DG_ANSI_BG_MAG}-1${DG_ANSI_X}${DG_ANSI_INVERT}"
+else
+  less_flags=""
+  ls_flags1=""
+  ls_flags2="-"
+fi
+# this works, just need to figure out what we want...
+# if [[ $DG_USER_LEVEL > 3 ]]; then
+#  less_flags=" ${DG_ANSI_BG_MAG}-FXS${DG_ANSI_X}${DG_ANSI_INVERT}"
+#  ls_flags1=" ${DG_ANSI_BG_MAG}-1F${DG_ANSI_X}${DG_ANSI_INVERT}"
+#  ls_flags2="${DG_ANSI_BG_MAG}-1F${DG_ANSI_X}${DG_ANSI_INVERT}"
+# fi
+
+
+
+
 printf "${DG_ANSI_BG_MAG}"
-repeat_str 64 "#"
+repeat_str 69 "#"
 printf "${DG_ANSI_X_BG}\n"
 printf "
-███╗░░░███╗░█████╗░███████╗███████╗░██████╗
-████╗░████║██╔══██╗╚════██║██╔════╝██╔════╝
-██╔████╔██║███████║░░███╔═╝█████╗░░╚█████╗░
-██║╚██╔╝██║██╔══██║██╔══╝░░██╔══╝░░░╚═══██╗
-██║░╚═╝░██║██║░░██║███████╗███████╗██████╔╝
-╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░
- 🅱  🅰  🆂  🅸  🅲     🅲  🅾  🅼  🅼  🅰  🅽  🅳  🆂
+            ███╗░░░███╗░█████╗░███████╗███████╗░██████╗
+            ████╗░████║██╔══██╗╚════██║██╔════╝██╔════╝
+            ██╔████╔██║███████║░░███╔═╝█████╗░░╚█████╗░
+            ██║╚██╔╝██║██╔══██║██╔══╝░░██╔══╝░░░╚═══██╗
+            ██║░╚═╝░██║██║░░██║███████╗███████╗██████╔╝
+            ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░
+            🅱  🅰  🆂  🅸  🅲     🅲  🅾  🅼  🅼  🅰  🅽  🅳  🆂
 "
 printf "
 =====================================================================
 |🧭 Change directory: ${DG_ANSI_INVERT}cd <folder_name>${DG_ANSI_X_INVERT} or go backwards with ${DG_ANSI_INVERT}cd ..${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|👁️  Look around: ${DG_ANSI_INVERT}ls -1${DG_ANSI_X_INVERT}
+|👁️  Look around: ${DG_ANSI_INVERT}ls${ls_flags1}${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🔎 Find hidden: ${DG_ANSI_INVERT}ls -1a${DG_ANSI_X_INVERT}
+|🔎 Find hidden: ${DG_ANSI_INVERT}ls ${ls_flags2}a${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🗒️  Read file: ${DG_ANSI_INVERT}less <file_name>${DG_ANSI_X_INVERT}
+|🗒️  Read file: ${DG_ANSI_INVERT}less${less_flags} <file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🗒️  Read saved file: ${DG_ANSI_INVERT}less \$dg_items/<file_name>${DG_ANSI_X_INVERT}
+|🗒️  Read saved file: ${DG_ANSI_INVERT}less${less_flags} \$dg_items/<file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
 |🌐 Open video/web link: ${DG_ANSI_INVERT}\$dg_items/<file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
@@ -28,7 +47,7 @@ printf "
 |--------------------------------------------------------------------
 |🎒 Show Saved items: ${DG_ANSI_INVERT}dg_show_items${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|📜 Read scroll: ${DG_ANSI_INVERT}dg_scroll <file_name>${DG_ANSI_X_INVERT}
+|📜 Read scroll: ${DG_ANSI_INVERT}dg_scroll <file_name>${DG_ANSI_X_INVERT} or list all ${DG_ANSI_INVERT}dg_scrolls${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
 |📝 Edit/Create file: ${DG_ANSI_INVERT}nano <file_name>${DG_ANSI_X_INVERT} (beginners ${DG_ANSI_INVERT}gedit <file_name>${DG_ANSI_X_INVERT})
 |--------------------------------------------------------------------
@@ -69,5 +88,5 @@ case $PWD/ in
 esac
 
 printf "\n${DG_ANSI_BG_MAG}"
-repeat_str 64 "#"
+repeat_str 69 "#"
 printf "${DG_ANSI_X_BG}\n"
