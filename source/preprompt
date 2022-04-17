@@ -1,14 +1,5 @@
 
 # load the main prompt stylings
-repeat_str(){
-  x=""
-  for i in $(seq 1 $1);
-  do
-   #$x+=$2;
-   x+="$2"
-  done
-  printf "$x";
-}
 
 look(){
  xrs=`echo '' | tree -L 1 | tail -1`;
@@ -17,7 +8,6 @@ IFS=', ' read -ra ADDR <<< "$xrs";
  printf "$DG_ICON_RMAG You look around  ${DG_ANSI_LGRE}\""${PWD##*/}"\"${DG_ANSI_X_COL}  and see ${DG_ANSI_LBLU}${ADDR[2]} ${ADDR[3]}${DG_ANSI_X_COL} "and" ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL}\n\n" | pv -qL 60;
  # sleep 0.4;
 }
-
 
 mkdir -p $devgame_bdir/mazes
 function before_command() {
@@ -62,8 +52,6 @@ if [[ $user_updated = 1 ]]; then
   esac
 fi
 
-
-
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
         if [[ $2 = 0 && $user_updated = 1 ]]; then
@@ -92,7 +80,6 @@ fi
           ;;
 
         "mv readme"*)
-
 
           if [[ $PWD == */mazes* ]]; then
             printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
@@ -136,6 +123,7 @@ fi
           dg_icon=`dg_word_choice "$DG_ICON_FIRE|$DG_ICON_GSTAR|$DG_ICON_RAISE|$DG_ICON_CLAP"`
           printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n";
 	        export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          create_link_file 'https://www.youtube.com/watch?v=HkdAHXoRtos' 'git_video001'
         fi
           ;;
 
@@ -249,8 +237,4 @@ function dg_word_choice() {
   IFS='|' read -r -a array <<< "$1"
   r=$(( RANDOM % $((${#array[@]})) ))
   printf ${array[$r]}
-}
-
-function dg_show_url() {
-printf "\e]8;;$1\a$2\e]8;;\a"
 }

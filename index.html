@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devs Game</title>
+  <style>
+    .cmd {
+      font-family: monospace;
+      margin:5px;
+      margin-top:0px;
+      margin-left:0px;
+      padding:5px;
+      background: #ccc;
+      width:100%;
+    }
+    .cmd::before {
+      content: "$ "
+    }
+    .blue {
+      color:blue
+    }
+  </style>
+</head>
+<body>
+  <pre>
+  ██████╗░███████╗██╗░░░██╗░██████╗  ░██████╗░░█████╗░███╗░░░███╗███████╗
+  ██╔══██╗██╔════╝██║░░░██║██╔════╝  ██╔════╝░██╔══██╗████╗░████║██╔════╝
+  ██║░░██║█████╗░░╚██╗░██╔╝╚█████╗░  ██║░░██╗░███████║██╔████╔██║█████╗░░
+  ██║░░██║██╔══╝░░░╚████╔╝░░╚═══██╗  ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░
+  ██████╔╝███████╗░░╚██╔╝░░██████╔╝  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
+  ╚═════╝░╚══════╝░░░╚═╝░░░╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
+
+                            Gamify your job
+              Terminal based game for your everyday coders
+<span class="blue">#########################################################################</span>
+Not sure how to get started?
+
+Try the Mazes tutorial:
+<pre id="mazes" class="cmd">...</pre>
+
+Check out the guide:
+<pre class="cmd">dg_guide</pre>
+
+See your current level and XP:
+<pre class="cmd">dg_current_stats</pre>
+
+See your collected items:
+<pre class="cmd">dg_show_items</pre>
+
+
+
+</pre>
+
+
+
+</body>
+<script>
+    var loc = window.location.pathname;
+    var dir = loc.substring(0, loc.lastIndexOf('/'));
+    function basexdir(id, path) {
+      document.getElementById(id).innerHTML='cd '+dir+path
+    }
+    basexdir('mazes',"/mazes/")
+  </script>
+</html>

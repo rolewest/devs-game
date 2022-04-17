@@ -2,10 +2,33 @@ devgame_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 devgame_bdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 dg_items=${devgame_bdir}/my_items/
 mkdir -p $dg_items
+source $devgame_dir/format
+dg_welcome() {
+  printf "\n${DG_ANSI_INVERT}"
+    repeat_str 64 "#"
+    printf "${DG_ANSI_X_INVERT}\n"
+    printf "${DG_ANSI_BG_GRE}Welcome to Devs Game v 0.01!${DG_ANSI_X_BG}"
+    printf "${DG_ANSI_BG_BLU} `dg_show_url 'file://'${devgame_bdir}/index.html 'Getting Started'` ${DG_ANSI_X_COL}"
+    printf "\n${DG_ANSI_INVERT}"
+    repeat_str 64 "#"
+    printf "${DG_ANSI_X_INVERT}\n"
+}
+dg_show_url() {
+printf "\e]8;;$1\a$2\e]8;;\a"
+}
+repeat_str(){
+  x=""
+  for i in $(seq 1 $1);
+  do
+   #$x+=$2;
+   x+="$2"
+  done
+  printf "$x";
+}
 load_user_data() {
   if [[ $DG_USER_LEVEL == '' ]]; then
   # welcome message for first run
-    echo `dg_welcome`
+    dg_welcome
   fi
   ARRAY=()
     while IFS= read -r line; do
@@ -24,7 +47,6 @@ save_user_data() {
  printf "${DG_USER_LEVEL:-1}\n${DG_USER_XP:-0.00}\n${DG_USER_PAUSE}\n" > $devgame_dir/user_data
 }
 
-
 dg_pause_game() {
 load_user_data # load it so we can save most recent
   if [[ $DG_USER_PAUSE = "paused" ]]; then
@@ -39,12 +61,8 @@ save_user_data # load it so we can save most recent
 bash --login
 }
 
-
 if [[ $DG_USER_PAUSE != "paused" ]]; then
 
-
-
-  source $devgame_dir/format
   source $devgame_dir/preprompt
 
   dg_pwd() {
@@ -52,12 +70,7 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
   }
   source $devgame_dir/prompt
 
-
-
-
-
-
-  scroll () {
+  dg_scroll () {
     if [[ $@ ]]
     then
       less -FX ~/Desktop/Work/Terminal-Game/scrolls/"$@";
@@ -76,7 +89,7 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
   alias ⏱='timeit'
   alias 🔖='log'
   alias 📜='scroll'
-  alias guide='📜 dg_guide'
+  alias dg_guide='📜 guide'
   alias 🌱='git branch'
   get_git_status(){
     repeat_str 64 "-";
@@ -84,7 +97,7 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     repeat_str 64 "-";
   }
   alias 👀='get_git_status'
-  🔎📜() {
+  dg_scrolls() {
     printf "\n";
     cat ~/Desktop/Work/Terminal-Game/ascii/scrolls;
     repeat_str 64 "#";
@@ -98,24 +111,21 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     printf "\n";
 
     repeat_str 64 "#";
-    printf "\nfound $(ls -p ~/Desktop/Work/Terminal-Game/my_items/$@ | grep -v / | grep -v 'dg_guide' | wc -l) items:\n\n";
-    ls -p ~/Desktop/Work/Terminal-Game/my_items/"$@" | grep -v / | grep -v "dg_guide";
+    printf "\nfound $(ls -p ~/Desktop/Work/Terminal-Game/my_items/$@ | grep -v / | grep -v 'guide' | wc -l) items:\n\n";
+    ls -p1 ~/Desktop/Work/Terminal-Game/my_items/"$@" | grep -v / | grep -v "guide";
     printf "\n";
     repeat_str 64 "#";
+    printf "\n";
   }
   after_command $BASH_COMMAND
 
 fi
 
-
-function dg_welcome() {
-  printf "\n${DG_ANSI_INVERT}"
-    repeat_str 64 "#"
-    printf "${DG_ANSI_X_INVERT}\n"
-    printf "${DG_ANSI_BG_GRE}Welcome to Devs Game v 0.01!${DG_ANSI_X_BG}"
-    printf "${DG_ANSI_BG_BLU} `dg_show_url 'http://testing.com' 'Getting Started'` dsfsfd${DG_ANSI_X_COL}"
-    printf "\n${DG_ANSI_INVERT}"
-    repeat_str 64 "#"
-    printf "${DG_ANSI_X_INVERT}\n"
+create_link_file() {
+  if [[ ! -f "$2" &&  ! -f "$devgame_bdir/my_items/$2"  ]]; then
+    touch $2
+    printf "#!/bin/bash\nxdg-open $1 > /dev/null 2>&1" > $2
+    chmod u+x $2
+    printf "\n\n${DG_ANSI_BG_GRE}${DG_ICON_GIFT} You found a new web link!${DG_ICON_GIFT}${DG_ANSI_X}\nTry ${DG_ANSI_BG_BLU}./${2}${DG_ANSI_X} to open it, or move it to your items!\n\n"
+  fi
 }
-
