@@ -38,18 +38,20 @@ c|d|
 # Requirements
 - BASH terminal with emoji support
 - Maybe some basic unix scripts that most devs should have already
+- Should work on MacOS but built on/for Ubuntu and other distros 
 
 # Features
 - Have more fun while working your software engineer or developer job
 - Digital Rewards, Items, and new skills for doing what you already do
-- Learn more and become more skilled and have fun while doing it
-- Earn XP points by running commands and editing your files
-- Find helpful "scrolls" (basically cheat sheets) and quick explainer videos by doing your everyday tasks
-- Works with VSCode built in terminal and other dev software
-- Perform simple commands to level up and more advanced commands when you're ready
-- Pseudo procedural in nature, so that it changes as you progress and get's harder to level up
+  - such as cool guides, cheat sheets, concise hidden training videos and more!
+- Learn more and become more skilled, and have fun while doing it
+- Earn XP points by running commands, editing your files, and doing the thing you already do
+- Works with VSCode built in terminal and other common developer software and terminal commands
+- Perform simple commands to level up, and more advanced commands when you're ready
+- Game changes as you progress and get's harder as you learn more
 - Adds gamification to your current workflow, as opposed to being a seperate game
 - simple install (you might need some dependencies, but I've kept it pretty barebones)
+- Retro style for that old-timey feel!
 
 # Coming Soon (more info under the _design_ directory)
 - Mazes: these nested folders and files will help you to level up in your downtime or find new skills/knowledge(side missions)
@@ -68,7 +70,9 @@ c|d|
   - view scoreboard online, or maybe I'll use github api to allow users to curl scoreboard url 
 - Combos
   - enter the right sequence of commands to get bonus xp or hidden scrolls/items/videos (e.g. git status; git add; git commit; git push; etc.)
-
+- Terminal Tetris - Mini Game
+  - files and folders are generated during the game, and you need to sort them or perform actions on them as fast as possible
+ 
 ## Todo
 - refactor messy code
 - remove old alias'
