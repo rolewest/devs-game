@@ -12,15 +12,17 @@ printf "
 "
 printf "
 =====================================================================
+|🧭 Change directory: ${DG_ANSI_INVERT}cd <folder_name>${DG_ANSI_X_INVERT} or go backwards with ${DG_ANSI_INVERT}cd ..${DG_ANSI_X_INVERT}
+|--------------------------------------------------------------------
 |👁️  Look around: ${DG_ANSI_INVERT}ls -1${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
 |🔎 Find hidden: ${DG_ANSI_INVERT}ls -1a${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🧭 Change directory: ${DG_ANSI_INVERT}cd <folder_name>${DG_ANSI_X_INVERT} or go backwards with ${DG_ANSI_INVERT}cd ..${DG_ANSI_X_INVERT}
+|🗒️  Read file: ${DG_ANSI_INVERT}less <file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🗒️ Read file: ${DG_ANSI_INVERT}less <file_name>${DG_ANSI_X_INVERT}
+|🗒️  Read saved file: ${DG_ANSI_INVERT}less \$dg_items/<file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
-|🗒️ Read saved file: ${DG_ANSI_INVERT}less \$dg_items/<file_name>${DG_ANSI_X_INVERT}
+|🌐 Open video/web link: ${DG_ANSI_INVERT}\$dg_items/<file_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
 |🤏 Save item: ${DG_ANSI_INVERT}mv <file_name> \$dg_items${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
