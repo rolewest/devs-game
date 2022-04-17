@@ -13,8 +13,8 @@ mkdir -p $devgame_bdir/mazes
 function before_command() {
 if [[ $PWD == */mazes* ]]; then
   dg_items=${devgame_bdir}/my_items/
-else
-  dg_items=''
+#else
+  #dg_items=''
 fi
 
 xrs=`echo '' | tree -L 1 | tail -1`;
@@ -74,8 +74,8 @@ fi
         yop=`check_valid $2 $x`;
         if [[ $yop == 'good' ]]; then
           printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
-
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
         fi
           ;;
 
@@ -104,6 +104,7 @@ fi
           printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
           look
           export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+
         fi
           ;;
 
