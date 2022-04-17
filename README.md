@@ -6,17 +6,17 @@
 ██████╔╝███████╗░░╚██╔╝░░██████╔╝  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
 ╚═════╝░╚══════╝░░░╚═╝░░░╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
 # Devs Game
-Gamify your daily job tasks, get better with git, bash, VS code, and more!
+Gamify your daily job tasks, get better with git, bash/terminal, VS code, and more!
 
-I started this to help me stay motivated, maybe it can do the same for you.
-
-This is mostly for learning bash terminal currently, early alpha.
+I started this to help me stay motivated and to learn more, maybe it can do the same for you.
+This is mostly for learning bash terminal, currently, early alpha.
 
 ## Install
 1. Clone the repo
-2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vi ~/.bashrc`)
+2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vim ~/.bashrc` or even `gedit ~/.bashrc` if you're a beginner)
 3. Add the line `source <path>/devs-game/source/init` <br>
 `<path>` is the location you cloned the repo to
+4. Open a new terminal window, or run `bash --login` from your current bash shell
 
 ## Commands
 - pause/resume `dg_pause_game`
@@ -26,6 +26,14 @@ This is mostly for learning bash terminal currently, early alpha.
 - show scrolls `dg_scrolls`
 - leave maze   `dg_maze_quit`
 
+# Requirements
+- BASH terminal with emoji support
+- Maybe some basic unix scripts that most devs should have already
+- Should work on:
+  - Ubuntu (built on Ubuntu 21.10)
+  - MacOS *untested but should work*
+  - Windows under GitBASH (https://gitforwindows.org/) *untested, probably need to tweak the code*
+
 ### Screen shots
 a|b|
 --|--|
@@ -34,11 +42,6 @@ a|b|
 c|d|
 --|--|
 <kbd>![image](https://user-images.githubusercontent.com/87285224/162610812-183661f1-d194-4bdd-8237-5eadd1530251.png)</kbd>|<kbd>![image](https://user-images.githubusercontent.com/87285224/162614733-6fafe1b4-1de8-4e4d-9e79-20fa2dfce1f5.png)</kbd>|
-
-# Requirements
-- BASH terminal with emoji support
-- Maybe some basic unix scripts that most devs should have already
-- Should work on MacOS but built on/for Ubuntu and other distros 
 
 # Features
 - Have more fun while working your software engineer or developer job
@@ -73,6 +76,12 @@ c|d|
 - Terminal Tetris - Mini Game
   - files and folders are generated during the game, and you need to sort them or perform actions on them as fast as possible
  
+## Getting started
+  After following the install instructions and/or trying some or all of the commands still not sure what to do?
+  - try clicking the link from when the game starts, if you don't see it type `dg_welcome` and press enter:
+![image](https://user-images.githubusercontent.com/87285224/163726314-f6880281-c62a-4251-bc8b-f98131309ed3.png)
+  - read that webpage/file as it will tell you all of commands you need to get started and to progress
+
 ## Todo
 - refactor messy code
 - remove old alias'
