@@ -1,5 +1,7 @@
 source/user_data
 builder_locations
 mazes/
+ttetris/
 my_items/
-bash_video001
+bash_video*
+git_video*

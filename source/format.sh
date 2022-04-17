@@ -115,6 +115,26 @@ DG_ICON_WARNING='⚠️ '
 DG_ICON_TORNADO='🌪️'
 
 
+# Terminal Tetris
+
+# beginner
+DG_TETRIS_REC='shape_rec'
+DG_TETRIS_SQU='shape_squ'
+
+# intermediate add in:
+DG_TETRIS_LET_L='shape_l'
+DG_TETRIS_LET_T='shape_t'
+
+# advanced add in:
+DG_TETRIS_LET_S='shape_s'
+DG_TETRIS_LET_Z='shape_z'
+
+# extreme add in:
+
+DG_TETRIS_LET_A='shape_a'
+DG_TETRIS_LET_B='shape_b'
+DG_TETRIS_LET_C='shape_c'
+DG_TETRIS_LET_D='shape_d'
 
 
 

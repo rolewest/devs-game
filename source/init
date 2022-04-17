@@ -131,3 +131,14 @@ create_link_file() {
     aplay /usr/share/sounds/sound-icons/cembalo-1.wav >/dev/null 2>&1 || true
   fi
 }
+
+#########################
+#  ! Project Features !
+#########################
+# TODO terminal tetris game
+  # files and folders are automatically created and you must sort them correctly
+
+#########################
+#   ! Project Debt !
+#########################
+# TODO Ability to toggle sounds
