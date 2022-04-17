@@ -125,6 +125,7 @@ create_link_file() {
   if [[ ! -f "$2" &&  ! -f "$devgame_bdir/my_items/$2"  ]]; then
     touch $2
     printf "#!/bin/bash\nxdg-open $1 > /dev/null 2>&1" > $2
+    printf "echo 'External links are ...'" >> $2
     chmod u+x $2
     printf "\n\n${DG_ANSI_BG_GRE}${DG_ICON_GIFT} You found a new web link!${DG_ICON_GIFT}${DG_ANSI_X}\nTry ${DG_ANSI_BG_BLU}./${2}${DG_ANSI_X} to open it, or move it to your items!\n\n"
   fi
