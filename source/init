@@ -2,7 +2,7 @@ devgame_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 devgame_bdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 dg_items=${devgame_bdir}/my_items/
 mkdir -p $dg_items
-source $devgame_dir/format
+source $devgame_dir/format.sh
 dg_welcome() {
   printf "\n${DG_ANSI_INVERT}"
     repeat_str 64 "#"
@@ -63,12 +63,12 @@ bash --login
 
 if [[ $DG_USER_PAUSE != "paused" ]]; then
 
-  source $devgame_dir/preprompt
+  source $devgame_dir/preprompt.sh
 
   dg_pwd() {
     echo "You're in ${PWD##*/}" | pv -qL 20; sleep 0.4;
   }
-  source $devgame_dir/prompt
+  source $devgame_dir/prompt.sh
 
   dg_scroll () {
     if [[ $@ ]]

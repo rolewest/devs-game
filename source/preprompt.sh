@@ -34,7 +34,7 @@ if [[ $user_updated = 1 ]]; then
     if [[ $devgamemaze_bdir == '' ]]; then
     echo 'You need to enter your password to build the mazes'
     fi
-    source $devgame_dir/mazes_source/beginner
+    source $devgame_dir/mazes_source/beginner.sh
     ;;&
     */mazes/*)
 
@@ -223,7 +223,7 @@ function level_check() {
     export DG_USER_XP=0.00
     export DG_USER_LEVEL=$((DG_USER_LEVEL+1))
     save_user_data
-    source $devgame_dir/levelup $xp_next
+    source $devgame_dir/levelup.sh $xp_next
   fi
 }
 # level_check
