@@ -20,15 +20,18 @@ This is mostly for learning bash terminal currently, early alpha.
 
 ## Commands
 - pause/resume `dg_pause_game`
-- show stats `dg_current_stats`
-- show guide `guide`
+- show stats   `dg_current_stats`
+- show guide   `dg_guide`
+- show items   `dg_show_items`
+- show scrolls `dg_scrolls`
+- leave maze   `dg_maze_quit`
 
 ### Screen shots
 a|b|
 --|--|
 <kbd> ![image](https://user-images.githubusercontent.com/87285224/162610212-24e08a9d-3154-4f65-8dc2-5758d3596957.png)</kbd>|<kbd>![image](https://user-images.githubusercontent.com/87285224/162609655-0e5f2275-6aa6-430b-ab8c-9e6fe822f975.png)</kbd>|
 
-a|b|
+c|d|
 --|--|
 <kbd>![image](https://user-images.githubusercontent.com/87285224/162610812-183661f1-d194-4bdd-8237-5eadd1530251.png)</kbd>|<kbd>![image](https://user-images.githubusercontent.com/87285224/162614733-6fafe1b4-1de8-4e4d-9e79-20fa2dfce1f5.png)</kbd>|
 
