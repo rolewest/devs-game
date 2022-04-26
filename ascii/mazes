@@ -27,33 +27,11 @@ printf "
             ██║╚██╔╝██║██╔══██║██╔══╝░░██╔══╝░░░╚═══██╗
             ██║░╚═╝░██║██║░░██║███████╗███████╗██████╔╝
             ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░
-            🅱  🅰  🆂  🅸  🅲     🅲  🅾  🅼  🅼  🅰  🅽  🅳  🆂
+
 "
+printf "=====================================================================\n"
+source "$devgame_bdir/ascii/basecommands"
 printf "
-=====================================================================
-|🧭 Change directory: ${DG_ANSI_INVERT}cd <folder_name>${DG_ANSI_X_INVERT} or go backwards with ${DG_ANSI_INVERT}cd ..${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|👁️  Look around: ${DG_ANSI_INVERT}ls${ls_flags1}${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🔎 Find hidden: ${DG_ANSI_INVERT}ls ${ls_flags2}a${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🗒️  Read file: ${DG_ANSI_INVERT}less${less_flags} <file_name>${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🗒️  Read saved file: ${DG_ANSI_INVERT}less${less_flags} \$dg_items/<file_name>${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🌐 Open video/web link: ${DG_ANSI_INVERT}\$dg_items/<file_name>${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🤏 Save item: ${DG_ANSI_INVERT}mv <file_name> \$dg_items${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|🎒 Show Saved items: ${DG_ANSI_INVERT}dg_show_items${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|📜 Read scroll: ${DG_ANSI_INVERT}dg_scroll <file_name>${DG_ANSI_X_INVERT} or list all ${DG_ANSI_INVERT}dg_scrolls${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|📝 Edit/Create file: ${DG_ANSI_INVERT}nano <file_name>${DG_ANSI_X_INVERT} (beginners ${DG_ANSI_INVERT}gedit <file_name>${DG_ANSI_X_INVERT})
-|--------------------------------------------------------------------
-|🗑️  Delete file: ${DG_ANSI_INVERT}rm <file_name>${DG_ANSI_X_INVERT}
-|--------------------------------------------------------------------
-|❌ Delete directory & files: ${DG_ANSI_INVERT}rm -r<folder_name>${DG_ANSI_X_INVERT}
 |--------------------------------------------------------------------
 |🌪️  Transport me out of the maze: ${DG_ANSI_INVERT}dg_maze_quit${DG_ANSI_X_INVERT}
 =====================================================================

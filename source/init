@@ -84,13 +84,12 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
   alias LG='git log --graph --oneline --decorate'
   alias timeit='TT'
   alias log='LG'
-  alias GB='dg_guide'
-  alias 📓='dg_guide'
+  #alias dg_guide='dg_scroll guide'
   alias 🔎='look'
   alias ⏱='timeit'
   alias 🔖='log'
   alias 📜='scroll'
-  alias dg_guide='📜 guide'
+
   alias 🌱='git branch'
   get_git_status(){
     repeat_str 64 "-";
@@ -106,6 +105,10 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     ls -p ~/Desktop/Work/Terminal-Game/scrolls/"$@" | grep -v / | grep -v "dg_guide";
     printf "\n";
     repeat_str 64 "#";
+  }
+
+  dg_guide() {
+    source $devgame_bdir/scrolls/guide
   }
 
   dg_show_items() {
