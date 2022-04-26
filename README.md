@@ -15,20 +15,21 @@ This is mostly for learning bash terminal and git/github, currently, early alpha
 
 
 
-## Install Linux
+## Install Linux (Ubuntu)
 1. Clone the repo
 2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vim ~/.bashrc` or even `gedit ~/.bashrc` if you want a GUI)
 3. Add the line `source <path>/devs-game/source/init` <br>
 `<path>` is the location you cloned the repo to
 4. Open a new terminal window, or run `bash --login` from your current bash shell
+5. Tree not installed? Install tree with `sudo apt install tree`
 
-
-## Install Mac
+## Install MacOS
 1. Clone the repo
-2. Open your `/etc/profile` file (`sudo nano /etc/profile`)
+2. Open your `/etc/profile` file `sudo nano /etc/profile`
 3. Add the line `source <path>/devs-game/source/init` <br>
 `<path>` is the location you cloned the repo to
 4. Open a new terminal window, or run `bash --login` from your current bash shell
+5. Tree not installed? Install tree with `brew install tree`
 
 ## Install Windows
 Untested. Probably works through GitBash
