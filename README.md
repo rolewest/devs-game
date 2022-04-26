@@ -26,7 +26,7 @@ This is mostly for learning bash terminal and git/github, currently, early alpha
 ## Install MacOS
 1. Clone the repo
 2. Open your `/etc/profile` file `sudo nano /etc/profile`
-3. Add the line `source <path>/devs-game/source/init` <br>
+3. Add the line `source <path>/devs-game/source/init mac` <br>
 `<path>` is the location you cloned the repo to
 4. Open a new terminal window, or run `bash --login` from your current bash shell
 5. Tree not installed? Install tree with `brew install tree`
@@ -72,7 +72,7 @@ c|d|
 - simple install (you might need some dependencies, but I've kept it pretty barebones)
 - Retro style for that old-timey feel!
 
-# 
+#
 
 # Coming Soon (more info under the _design_ directory)
 - Mazes: (in progress) these nested folders and files will help you to level up in your downtime or find new skills/knowledge(side missions)
@@ -88,12 +88,12 @@ c|d|
 - Score Board
   - do a pull request to a repo with your encrypted scores file to see show off your stats!
   - will check decrypt files, validate, and merge with scoreboard file
-  - view scoreboard online, or maybe I'll use github api to allow users to curl scoreboard url 
+  - view scoreboard online, or maybe I'll use github api to allow users to curl scoreboard url
 - Combos
   - enter the right sequence of commands to get bonus xp or hidden scrolls/items/videos (e.g. git status; git add; git commit; git push; etc.)
 - Terminal Tetris - Mini Game
   - files and folders are generated during the game, and you need to sort them or perform actions on them as fast as possible
- 
+
 ## Getting started
   After following the install instructions and/or trying some or all of the commands still not sure what to do?
   - try clicking the link from when the game starts, if you don't see it type `dg_welcome` and press enter/return:
