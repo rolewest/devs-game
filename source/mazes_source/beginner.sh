@@ -16,23 +16,37 @@ mkdir -p $dg_maze_dir/beginner/tutorial/start/red_door/green_door/{blue_door,/pu
 # add readme
 file_name=$dg_maze_dir"/beginner/tutorial/readme"
 if test -f $file_name; then
-    sudo chattr -i $file_name
+    unlock_file
     rm $file_name
 fi
 cat $dg_base_dir/ascii/tutorial > $file_name
 printf "Enter the 🅂 🅃 🄰 🅁 🅃 directory to begin\n" >> $file_name
 `printf dg_eof` >> $file_name
-sudo chattr +i $file_name
+lock_file
 
 # add next read me
 file_name=$dg_maze_dir"/beginner/tutorial/start/red_door/readme"
 if test -f $file_name; then
-    sudo chattr -i $file_name
+    unlock_file
     rm $file_name
 fi
 cat $dg_base_dir/ascii/tutorial > $file_name
 printf "Enter the 🅂 🅃 🄰 🅁 🅃 directory to begin!!!\n" >> $file_name
 `printf dg_eof` >> $file_name
-sudo chattr +i $file_name
+lock_file
 
+lock_file() {
+  if dg_os=="mac"; then
+    sudo chflags uchg $file_name
+  else
+    sudo chattr +i $file_name
+  fi
+}
+unlock_file() {
+  if dg_os=="mac"; then
+    chflags nouchg $file_name
+  else
+    sudo chattr -i $file_name
+  fi
+}
 #chmod 400 $dg_maze_dir/beginner/tutorial/readme

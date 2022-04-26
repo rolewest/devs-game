@@ -3,6 +3,7 @@ devgame_bdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .
 dg_items=${devgame_bdir}/my_items/
 mkdir -p $dg_items
 source $devgame_dir/format.sh
+dg_os="$1"
 dg_welcome() {
   printf "\n${DG_ANSI_INVERT}"
     repeat_str 64 "#"
