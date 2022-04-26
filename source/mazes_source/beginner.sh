@@ -1,3 +1,17 @@
+lock_file() {
+  if dg_os=="mac"; then
+    sudo chflags uchg $file_name
+  else
+    sudo chattr +i $file_name
+  fi
+}
+unlock_file() {
+  if dg_os=="mac"; then
+    chflags nouchg $file_name
+  else
+    sudo chattr -i $file_name
+  fi
+}
 devgamemaze_bdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && cd .. && pwd )
 dg_base_dir=${devgamemaze_bdir}
 dg_maze_dir=${devgamemaze_bdir}/mazes
@@ -35,18 +49,5 @@ printf "Enter the 🅂 🅃 🄰 🅁 🅃 directory to begin!!!\n" >> $file_nam
 `printf dg_eof` >> $file_name
 lock_file
 
-lock_file() {
-  if dg_os=="mac"; then
-    sudo chflags uchg $file_name
-  else
-    sudo chattr +i $file_name
-  fi
-}
-unlock_file() {
-  if dg_os=="mac"; then
-    chflags nouchg $file_name
-  else
-    sudo chattr -i $file_name
-  fi
-}
+
 #chmod 400 $dg_maze_dir/beginner/tutorial/readme
