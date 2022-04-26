@@ -47,7 +47,7 @@ Untested. Probably works through GitBash
 - Maybe some basic unix scripts that most devs should have already
 - Should work on:
   - Ubuntu (built on Ubuntu 21.10)
-  - MacOS *untested but should work*
+  - MacOS *no sound*
   - Windows under GitBASH (https://gitforwindows.org/) *untested, probably need to tweak the code*
 
 ### Screen shots
