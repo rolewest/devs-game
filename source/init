@@ -37,6 +37,7 @@ load_user_data() {
   export DG_USER_LEVEL=${ARRAY[0]}
   export DG_USER_XP=${ARRAY[1]}
   export DG_USER_PAUSE=${ARRAY[2]}
+  devgamemaze_bdir=${ARRAY[3]}
 }
 load_user_data
 export DG_USER_XP=${DG_USER_XP:-0.00}
@@ -44,7 +45,7 @@ export DG_USER_LEVEL=${DG_USER_LEVEL:-1}
 export DG_USER_PAUSE=${DG_USER_PAUSE}
 
 save_user_data() {
- printf "${DG_USER_LEVEL:-1}\n${DG_USER_XP:-0.00}\n${DG_USER_PAUSE}\n" > $devgame_dir/user_data
+ printf "${DG_USER_LEVEL:-1}\n${DG_USER_XP:-0.00}\n${DG_USER_PAUSE}\n${devgamemaze_bdir}\n" > $devgame_dir/user_data
 }
 
 dg_pause_game() {

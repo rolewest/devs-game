@@ -29,26 +29,26 @@ in_maze=0
 ## check if in maze
 if [[ $user_updated = 1 ]]; then
   case $PWD/ in
-    */mazes*)
-    # build the mazes
-    if [[ $devgamemaze_bdir == '' ]]; then
-    aplay /usr/share/sounds/sound-icons/cembalo-6.wav >/dev/null 2>&1 || true
-    echo 'You need to enter your password to build the mazes'
-    fi
-    source $devgame_dir/mazes_source/beginner.sh
-    ;;&
-    */mazes/*)
-
-      printf "\n${DG_ANSI_BOLD}You're in the mazes, type ${DG_ANSI_BG_MAG}dg_maze_info${DG_ANSI_X_BG}${DG_ANSI_BOLD} for help...${DG_ANSI_X}"
-      in_maze=1
-      ;;&
     */mazes/beginner*)
       if [[ "${ADDR[0]}" = 0 ]]; then
         printf "\nYou hit a dead-end, ${DG_ANSI_LBLU}1 directory${DG_ANSI_X_COL} back the way you came in.\n\n" | pv -qL 60;
       else
         printf "\nYou see ${DG_ANSI_LBLU}${ADDR[0]} ${ADDR[1]}${DG_ANSI_X_COL} in front of you and 1 behind you\n\n" | pv -qL 60;
       fi
+      printf "\n${DG_ANSI_BOLD}You're in the mazes, type ${DG_ANSI_BG_MAG}dg_maze_info${DG_ANSI_X_BG}${DG_ANSI_BOLD} for help...${DG_ANSI_X}"
+      in_maze=1
     ;;
+    */mazes*)
+     # build the mazes
+      if [[ $devgamemaze_bdir == '' ]]; then
+        aplay /usr/share/sounds/sound-icons/cembalo-6.wav >/dev/null 2>&1 || true
+        echo 'You need to enter your password to build and access the mazes'
+        source $devgame_dir/mazes_source/beginner.sh
+      fi
+      printf "\n${DG_ANSI_BOLD}You're in the mazes, type ${DG_ANSI_BG_MAG}dg_maze_info${DG_ANSI_X_BG}${DG_ANSI_BOLD} for help...${DG_ANSI_X}"
+      in_maze=1
+    ;;
+
     #*) echo "not in the maze";;
   esac
 fi
