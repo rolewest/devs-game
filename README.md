@@ -15,6 +15,7 @@ If you're a software developer it's kind of like an RPG for your life.
 I started this to help me learn more about bash, and stay motivated when coding, maybe it can do the same for you?
 This is mostly for learning bash terminal and git/github, currently, early alpha.
 
+EARLY ALPHA, lots to do and to come.
 
 ## Install Linux (Ubuntu)
 1. Clone the repo
