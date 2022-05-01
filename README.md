@@ -12,7 +12,7 @@ Almost full support for:
 - Git/Github
 - Bash terminal commands
 
-Partial support for:
+Partial terminal support for:
 - VSCode
 - Heroku
 - Docker
