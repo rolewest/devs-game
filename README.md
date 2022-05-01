@@ -1,17 +1,26 @@
 
 ![image](https://user-images.githubusercontent.com/87285224/165759240-6d56d1b3-114f-4496-a663-cda4e8efc3fb.png)
 # Devs Game
-This is my "weekends" project.
-
 Gamify your daily job tasks, get better with git, bash/terminal, VS code, and more!
 
 If you're a software developer it's kind of like an RPG for your life.
 
-I started this to help me learn more about bash, and stay motivated when coding, maybe it can do the same for you?
+I started this to help me learn more about bash etc., and stay motivated when coding, maybe it can do the same for you?
 This is mostly for learning bash terminal and git/github, currently, early alpha.
+Almost full support for:
+- Git/Github
+- Bash terminal commands
+Partial support for:
+- VSCode
+- Heroku
+- Docker
+- Ngrok
+- Python
+- Jest
+- more to come. Suggestions?
 
 EARLY ALPHA, lots to do and to come.
-
+This is my "weekends" project.
 ## Install Linux (Ubuntu)
 1. Clone the repo
 2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vim ~/.bashrc` or even `gedit ~/.bashrc` if you want a GUI)
