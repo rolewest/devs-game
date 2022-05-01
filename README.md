@@ -7,9 +7,11 @@ If you're a software developer it's kind of like an RPG for your life.
 
 I started this to help me learn more about bash etc., and stay motivated when coding, maybe it can do the same for you?
 This is mostly for learning bash terminal and git/github, currently, early alpha.
+
 Almost full support for:
 - Git/Github
 - Bash terminal commands
+
 Partial support for:
 - VSCode
 - Heroku
