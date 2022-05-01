@@ -1,6 +1,5 @@
 
  case "$BASH_COMMAND" in
-
     "git "*"push"*)
       x=`earned_xp 10`
       yop=`check_valid $2 $x`;
@@ -37,7 +36,6 @@
         export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
       fi
     ;;
-
     "git "*"checkout"*)
       x=`earned_xp 3`
       yop=`check_valid $2 $x`;

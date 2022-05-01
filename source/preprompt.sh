@@ -67,7 +67,6 @@ fi
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
         ;;
-
         "cd "*)
           x=`earned_xp 0.01`
           yop=`check_valid $2 $x`;
@@ -76,19 +75,17 @@ fi
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
         ;;
-
         "mv readme"*)
           if [[ $PWD == */mazes* ]]; then
             printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
           fi
           #exit
         ;;
-
         "less "*)
           x=`earned_xp 0.05`
           yop=`check_valid $2 $x`;
           if [[ $yop == 'good' ]]; then
-            printf "You read a file with $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            printf "You try to read a file with $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
 
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
@@ -108,12 +105,12 @@ fi
         "git "*)
           source $devgame_bdir/source/cmds/git.sh
         ;;
-
-       *)
-       # echo "$BASH_COMMAND";
-       # command wasn't recognized
-       ;;
+        *)
+          # command wasn't recognized
+          # echo "$BASH_COMMAND";
+        ;;
   esac
+
  # this makes it so the current_stats are only shown if a status change happend
   if [[ $oldxp = $DG_USER_XP && $oldlvl = $DG_USER_LEVEL ]]; then
     user_updated=0
