@@ -55,83 +55,63 @@ fi
 
   case "$BASH_COMMAND" in
         $PROMPT_COMMAND)
-        if [[ $2 = 0 && $user_updated = 1 ]]; then
-          dg_current_stats
-        fi
-          ;;
-
+          if [[ $2 = 0 && $user_updated = 1 ]]; then
+            dg_current_stats
+          fi
+        ;;
         "pwd"*)
-         x=`earned_xp 0.01`
-         yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-          printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
-
-          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-        fi
-          ;;
+          x=`earned_xp 0.01`
+          yop=`check_valid $2 $x`;
+          if [[ $yop == 'good' ]]; then
+            printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          fi
+        ;;
 
         "cd "*)
-        x=`earned_xp 0.01`
-        yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-          printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
-          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-          create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
-          #(sleep 1 && create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001')& >/dev/null 2>&1 || true
-
-        fi
-          ;;
+          x=`earned_xp 0.01`
+          yop=`check_valid $2 $x`;
+          if [[ $yop == 'good' ]]; then
+            printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          fi
+        ;;
 
         "mv readme"*)
           if [[ $PWD == */mazes* ]]; then
             printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
           fi
           #exit
-         ;;
+        ;;
 
         "less "*)
-        x=`earned_xp 0.05`
-        yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-          printf "You read a file with $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+          x=`earned_xp 0.05`
+          yop=`check_valid $2 $x`;
+          if [[ $yop == 'good' ]]; then
+            printf "You read a file with $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
 
-          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-        fi
-          ;;
+            export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          fi
+        ;;
         "ls "*)
-        x=`earned_xp 0.01`
-        yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-        dg_icon=`dg_word_choice "$DG_ICON_BALLOON|$DG_ICON_STAR"`
-          printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
-          look
-          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-
-        fi
-          ;;
-
-        "git "*"push"*)
-        x=`earned_xp 10`
-        yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-          printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_ROCKET + $x XP!\n";
-          export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-        fi
-          ;;
-
+          x=`earned_xp 0.01`
+          yop=`check_valid $2 $x`;
+          if [[ $yop == 'good' ]]; then
+            dg_icon=`dg_word_choice "$DG_ICON_BALLOON|$DG_ICON_STAR"`
+            printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
+            look
+            export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+            create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
+            #(sleep 1 && create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001')& >/dev/null 2>&1 || true
+          fi
+        ;;
         "git "*)
-        x=`earned_xp 1`
-         yop=`check_valid $2 $x`;
-        if [[ $yop == 'good' ]]; then
-          dg_icon=`dg_word_choice "$DG_ICON_FIRE|$DG_ICON_GSTAR|$DG_ICON_RAISE|$DG_ICON_CLAP"`
-          printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n";
-	        export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
-          create_link_file 'https://www.youtube.com/watch?v=HkdAHXoRtos' 'git_video001'
-        fi
-          ;;
+          source $devgame_bdir/source/cmds/git.sh
+        ;;
 
        *)
        # echo "$BASH_COMMAND";
+       # command wasn't recognized
        ;;
   esac
  # this makes it so the current_stats are only shown if a status change happend
@@ -145,7 +125,7 @@ fi
   level_check
 
 }
-
+# this isn't used, currently
 trap 'before_command ${LINENO} ${?}' DEBUG
 
 function after_command() {
@@ -158,7 +138,7 @@ function after_command() {
        ;;
   esac
 }
-
+# make sure the xp level up is above zero, otherwise user level is too high for cmd xp
 function check_valid() {
   if [ $1 == 0 ] && (( $(echo "$2 > 0.00" | bc -l) )); then
     eval 'echo "good"'
@@ -181,7 +161,6 @@ case "$choice" in
   y|Y )
     cd $devgame_bdir/mazes
     printf "${DG_ANSI_BG_BLU}${DG_ICON_TORNADO} You have been transported to the root of the mazes ${DG_ICON_TORNADO} ${DG_ANSI_X_BG}\n"
-
   ;;
   * )
     echo "Good luck on your travels!"
@@ -234,7 +213,7 @@ function earned_xp() {
     printf $x
 
 }
-
+# just a word spinner for randomizing: keep things fresh
 function dg_word_choice() {
   # input should be dg_word_choice "word1|word2|word3"
   IFS='|' read -r -a array <<< "$1"
