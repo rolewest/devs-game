@@ -129,7 +129,7 @@ fi
         "python "*|"python3 "*)
           source $devgame_bdir/source/cmds/python.sh
         ;;
-        "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*)
+        "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*|"jest "*)
           source $devgame_bdir/source/cmds/jest.sh
         ;;
         *)

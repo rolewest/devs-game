@@ -1,6 +1,6 @@
 
  case "$BASH_COMMAND" in
-    "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*)
+    "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*|"jest "*)
       x=`earned_xp 1`
       yop=`check_valid $2 $x`;
       if [[ $yop == 'good' ]]; then
