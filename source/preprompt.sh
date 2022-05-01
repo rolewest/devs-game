@@ -75,12 +75,21 @@ fi
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
         ;;
+        "cat "*|"cp "*|"rm "*|"touch "*)
+          x=`earned_xp 0.01`
+          yop=`check_valid $2 $x`;
+          if [[ $yop == 'good' ]]; then
+            printf "You try to run $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+          fi
+        ;;
         "mv readme"*)
           if [[ $PWD == */mazes* ]]; then
             printf "${DG_ANSI_BG_RED}${DG_ICON_WARNING} That file can not be picked up or moved.${DG_ICON_WARNING}${DG_ANSI_X}\n"
           fi
           #exit
         ;;
+
         "less "*)
           x=`earned_xp 0.05`
           yop=`check_valid $2 $x`;
@@ -104,6 +113,24 @@ fi
         ;;
         "git "*)
           source $devgame_bdir/source/cmds/git.sh
+        ;;
+        "code "*)
+          source $devgame_bdir/source/cmds/vscode.sh
+        ;;
+        "heroku "*)
+          source $devgame_bdir/source/cmds/heroku.sh
+        ;;
+        "docker "*)
+          source $devgame_bdir/source/cmds/docker.sh
+        ;;
+        "ngrok "*)
+          source $devgame_bdir/source/cmds/ngrok.sh
+        ;;
+        "python "*|"python3 "*)
+          source $devgame_bdir/source/cmds/python.sh
+        ;;
+        "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*)
+          source $devgame_bdir/source/cmds/jest.sh
         ;;
         *)
           # command wasn't recognized

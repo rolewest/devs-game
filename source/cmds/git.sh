@@ -1,6 +1,6 @@
 
  case "$BASH_COMMAND" in
-    "git init"*|"git clone"*|)
+    "git init"*|"git clone"*)
       x=`earned_xp 25`
       yop=`check_valid $2 $x`;
       if [[ $yop == 'good' ]]; then
@@ -9,7 +9,14 @@
         export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
       fi
     ;;
-
+    "git "*"push"*"-f"*)
+      x=`earned_xp 15`
+      yop=`check_valid $2 $x`;
+      if [[ $yop == 'good' ]]; then
+        printf "You try to run $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT} $DG_ICON_VICE  ${DG_ANSI_GRE}$DG_ICON_UNI_BRANCH${DG_ANSI_X} $DG_ICON_UNI_GIT with all your might! \n$DG_ICON_ROCKET + $x XP!\n";
+        export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
+      fi
+    ;;
     "git "*"push"*)
       x=`earned_xp 10`
       yop=`check_valid $2 $x`;
