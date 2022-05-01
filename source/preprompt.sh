@@ -63,7 +63,7 @@ fi
           x=`earned_xp 0.01`
           yop=`check_valid $2 $x`;
           if [[ $yop == 'good' ]]; then
-            printf "You ran ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            printf "You try to run ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
         ;;
@@ -71,7 +71,7 @@ fi
           x=`earned_xp 0.01`
           yop=`check_valid $2 $x`;
           if [[ $yop == 'good' ]]; then
-            printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
+            printf "You try to run $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$DG_ICON_BALLOON + $x XP!\n"
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
           fi
         ;;
@@ -95,7 +95,7 @@ fi
           yop=`check_valid $2 $x`;
           if [[ $yop == 'good' ]]; then
             dg_icon=`dg_word_choice "$DG_ICON_BALLOON|$DG_ICON_STAR"`
-            printf "You ran $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
+            printf "You try to run $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
             look
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
             create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
