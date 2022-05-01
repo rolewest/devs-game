@@ -77,27 +77,10 @@ if [[ $DG_USER_PAUSE != "paused" ]]; then
     then
       less -FX ~/Desktop/Work/Terminal-Game/scrolls/"$@";
     else
-      🔎📜;
+      dg_scrolls;
     fi
   }
-  alias LL='look'
-  alias TT='gnomon'
-  alias LG='git log --graph --oneline --decorate'
-  alias timeit='TT'
-  alias log='LG'
-  #alias dg_guide='dg_scroll guide'
-  alias 🔎='look'
-  alias ⏱='timeit'
-  alias 🔖='log'
-  alias 📜='scroll'
 
-  alias 🌱='git branch'
-  get_git_status(){
-    repeat_str 64 "-";
-    git status;
-    repeat_str 64 "-";
-  }
-  alias 👀='get_git_status'
   dg_scrolls() {
     printf "\n";
     cat ~/Desktop/Work/Terminal-Game/ascii/scrolls;
