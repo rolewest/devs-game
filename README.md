@@ -19,6 +19,8 @@ Partial terminal support for:
 - Ngrok
 - Python
 - Jest
+- npm/yarn
+- Ruby on Rails
 - more to come. Suggestions?
 
 EARLY ALPHA, lots to do and to come.
