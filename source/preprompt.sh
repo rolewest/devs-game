@@ -132,6 +132,15 @@ fi
         "npx jest "*|"npm test"|"yarn test"|*"node"*"jest "*|"jest "*)
           source $devgame_bdir/source/cmds/jest.sh
         ;;
+        "npm "*)
+          source $devgame_bdir/source/cmds/npm.sh
+        ;;
+        "yarn"*)
+          source $devgame_bdir/source/cmds/yarn.sh
+        ;;
+        "rails "*|*"bin/rails "*|"bin/rake "*|"rvm "*|*"rbenv "*)
+          source $devgame_bdir/source/cmds/rails.sh
+        ;;
         *)
           # command wasn't recognized
           # echo "$BASH_COMMAND";
