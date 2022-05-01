@@ -1,7 +1,7 @@
 
 # load the main prompt stylings
 
-look(){
+dg_look(){
  xrs=`echo '' | tree -L 1 | tail -1`;
 IFS=', ' read -ra ADDR <<< "$xrs";
 
@@ -96,7 +96,7 @@ fi
           if [[ $yop == 'good' ]]; then
             dg_icon=`dg_word_choice "$DG_ICON_BALLOON|$DG_ICON_STAR"`
             printf "You try to run $DG_ICON_WAND ${DG_ANSI_INVERT}$BASH_COMMAND${DG_ANSI_X_INVERT}\n$dg_icon + $x XP!\n"
-            look
+            dg_look
             export DG_USER_XP=`echo $DG_USER_XP + $x | bc | xargs printf "%.2f"`
             create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001'
             #(sleep 1 && create_link_file 'https://www.youtube.com/watch?v=I4EWvMFj37g' 'bash_video001')& >/dev/null 2>&1 || true
