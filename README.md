@@ -27,7 +27,7 @@ EARLY ALPHA, lots to do and to come.
 This is my "weekends" project.
 ## Install Linux (Ubuntu)
 1. Clone the repo
-2. Open your `~/.bashrc` file (`nano ~./bashrc` or `vim ~/.bashrc` or even `gedit ~/.bashrc` if you want a GUI)
+2. Open your `~/.bashrc` file (`nano ~/.bashrc` or `vim ~/.bashrc` or even `gedit ~/.bashrc` if you want a GUI)
 3. Add the line `source <path>/devs-game/source/init` <br>
 `<path>` is the location you cloned the repo to
 4. Open a new terminal window, or run `bash --login` from your current bash shell
