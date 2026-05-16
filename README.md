@@ -5,6 +5,9 @@ Gamify your daily job tasks, get better with git, bash/terminal, VS code, and mo
 
 > A terminal-based RPG where your real developer commands (git, docker, npm, etc.) earn XP, unlock secrets, and gradually make you a more effective and skilled developer.”
 
+
+> You don’t ‘play’ this game. You install it—and it turns your normal development workflow into progression.
+
 If you're a software developer it's kind of like an RPG for your life.
 
 I started this to help me learn more about bash etc., and stay motivated when coding, maybe it can do the same for you?
